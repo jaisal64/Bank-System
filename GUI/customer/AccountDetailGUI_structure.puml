@@ -1,0 +1,882 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": false,
+    "cutConstructors": false
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "GUI.customer.AccountDetailGUI",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_109770518 { 
+   	label=stock
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Stock101396370[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Stock</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   price: double [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Stock(id: int, name: String, price: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPrice(): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setPrice(price: double)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1177318867 { 
+   	label=account
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Account634940503[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Account</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   balance: Double [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   transactionHistory: List&lt;TransactionHistory&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Account(id: Long, balance: Double, transactionHistory: List&lt;TransactionHistory&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getBalance(): Double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTransactionHistory(): List&lt;TransactionHistory&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setBalance(balance: Double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setTransactionHistory(transactionHistory: List&lt;TransactionHistory&gt;)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1355086998 { 
+   	label=coding
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   ATM1355086998[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ATM</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   accountService: AccountService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currencyService: CurrencyService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customerService: CustomerService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   loanService: LoanService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   stockService: StockService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   transactionService: TransactionService [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ATM()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ buyCurrency(currency: Currency, account: Account)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ buyStock(account: Account, stock: Stock, buyingAmount: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ createNewAccount(ownerId: String, type: int, depositAmount: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deposit(account: Account, amount: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAccountCurrencyList(accountId: long): List&lt;Currency&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAccountTransaction(accountId: Long): List&lt;TransactionHistory&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllCollateral(): List&lt;Collateral&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllCurrencyList(): List&lt;Currency&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCustomerLoan(customerId: String): List&lt;Loan&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMyStockList(account: SecurityAccount)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getStockList(): List&lt;Stock&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ login(id: String, password: String): Map&lt;String, Object&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ refreshCustomerData(customer: Customer): Customer</TD></TR>
+<TR><TD ALIGN="LEFT" >+ register(customer: Customer): Map&lt;String, String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ returnLoan(customer: Customer, loanId: int, collateralPrice: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchAccountById(id: long): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sellCurrency(currency: Currency, account: Account)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sellStock(account: SecurityAccount, stockID: int, buyingPrice: double, currentPrice: double, amount: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takeLoan(customer: Customer, collateralID: int, collateralPrice: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ transaction(senderId: long, amount: double, receiverId: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ transfer(sendId: long, receiveId: long, amount: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCustomerPassword(id: String, newPassword: String): Map&lt;String, String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCustomerPhoneNum(id: String, newPhoneNum: String): Map&lt;String, String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ withdraw(account: Account, amount: double)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+User1355086998[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)User</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   id: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   password: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   phoneNum: Integer [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ User(name: String, phoneNum: Integer, password: String, id: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPassword(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPhoneNum(): Integer</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setPassword(password: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setPhoneNum(phoneNum: Integer)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_3327216 { 
+   	label=loan
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Collateral1942719732[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Collateral</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   price: double [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Collateral(id: int, name: String, price: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPrice(): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setPrice(price: double)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_575402001 { 
+   	label=currency
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Currency209262101[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Currency</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   amount: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rate: double [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Currency(id: int, name: String, rate: double, amount: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAmount(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getRate(): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setAmount(amount: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setRate(rate: double)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_606175198 { 
+   	label=customer
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   AccountDetailGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AccountDetailGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   customer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ AccountDetailGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CheckAccountBalance59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CheckAccountBalance</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   customer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ CheckAccountBalance(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CreateNewAccountGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CreateNewAccountGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   amountText: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   comboBox: JComboBox&lt;String&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   confirmButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ CreateNewAccountGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CurrencyListGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CurrencyListGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   buyButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentCustomer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jTable: JTable [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   model: DefaultTableModel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myCurrencyButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ CurrencyListGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Customer240035298[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Customer</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   checkingAccount: CheckingAccount [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   loans: List&lt;Loan&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   savingAccount: SavingAccount [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   securityAccount: SecurityAccount [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Customer(name: String, phoneNum: Integer, password: String, id: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCheckingAccount(): CheckingAccount</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getLoans(): List&lt;Loan&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getSavingAccount(): SavingAccount</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getSecurityAccount(): SecurityAccount</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setCheckingAccount(checkingAccount: CheckingAccount)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setLoans(loans: List&lt;Loan&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setSavingAccount(savingAccount: SavingAccount)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setSecurityAccount(securityAccount: SecurityAccount)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CustomerMainGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CustomerMainGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   checkAccountButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currencyButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentCustomer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   depositButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   loanButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   logoutButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   newAccountButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   stockButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tHButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   transactionButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   transferButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   withdrawButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ CustomerMainGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DepositGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DepositGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   amountText: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   checkBalanceButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   comboBox: JComboBox&lt;String&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   confirmButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ DepositGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LoanListGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LoanListGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   buyButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentCustomer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jTable: JTable [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   model: DefaultTableModel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myCurrencyButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ LoanListGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LoginGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LoginGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   idText: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   loginButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   logoutButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   passwordText: JPasswordField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   registerButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ LoginGUI()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MyCurrencyListGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MyCurrencyListGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   buyButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentCustomer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jTable: JTable [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   model: DefaultTableModel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ MyCurrencyListGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MyLoanListGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MyLoanListGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   buyButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentCustomer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jTable: JTable [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   model: DefaultTableModel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ MyLoanListGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MyStockListGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MyStockListGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   buyButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentCustomer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jTable: JTable [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   model: DefaultTableModel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ MyStockListGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RegisterGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RegisterGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cancelButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   idText: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nameText: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   passwordText: JPasswordField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   phoneNumText: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   registerButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ RegisterGUI()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+StockListGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)StockListGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   buyButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentCustomer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jTable: JTable [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   model: DefaultTableModel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myStockButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ StockListGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TransactionGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TransactionGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   amountText: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   checkBalanceButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   confirmButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   receiverField: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sendComboBox: JComboBox&lt;String&gt; [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ TransactionGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TransactionHistoryGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TransactionHistoryGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   comboBox: JComboBox&lt;String&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   confirmButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ TransactionHistoryGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TransactionHistoryListGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TransactionHistoryListGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   accountId: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentCustomer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jTable: JTable [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   myStockButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ TransactionHistoryListGUI(customer: Customer, accountId: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TransferGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TransferGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   amountText: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   checkBalanceButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   confirmButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   receiveComboBox: JComboBox&lt;String&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sendComboBox: JComboBox&lt;String&gt; [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ TransferGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+WithdrawGUI59960145[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)WithdrawGUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   amountText: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   checkBalanceButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   comboBox: JComboBox&lt;String&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   confirmButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   returnButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ WithdrawGUI(customer: Customer)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+subgraph cluster_1864130947 { 
+   	label=LoanListGUI
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   ActionPanelEditorRenderer1217890960[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ActionPanelEditorRenderer</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   panel: JPanel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ActionPanelEditorRenderer()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCellEditorValue(): Object</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTableCellEditorComponent(table: JTable, value: Object, isSelected: boolean, row: int, column: int): Component</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTableCellRendererComponent(table: JTable, value: Object, isSelected: boolean, hasFocus: boolean, row: int, column: int): Component</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2026206268 { 
+   	label=CurrencyListGUI
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   ActionPanelEditorRenderer1840277073[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ActionPanelEditorRenderer</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   panel: JPanel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ActionPanelEditorRenderer()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCellEditorValue(): Object</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTableCellEditorComponent(table: JTable, value: Object, isSelected: boolean, row: int, column: int): Component</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTableCellRendererComponent(table: JTable, value: Object, isSelected: boolean, hasFocus: boolean, row: int, column: int): Component</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_740035575 { 
+   	label=StockListGUI
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   ActionPanelEditorRenderer701361308[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ActionPanelEditorRenderer</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   panel: JPanel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ActionPanelEditorRenderer()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCellEditorValue(): Object</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTableCellEditorComponent(table: JTable, value: Object, isSelected: boolean, row: int, column: int): Component</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTableCellRendererComponent(table: JTable, value: Object, isSelected: boolean, hasFocus: boolean, row: int, column: int): Component</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+subgraph cluster_70939 { 
+   	label=GUI
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   HomePage70939[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)HomePage</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   customerLoginButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   frame: JFrame [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   managerLoginButton: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ HomePage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ actionPerformed(e: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- placeComponents(panel: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_82059409 { 
+   	label=Utils
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   CommonUtil82059409[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CommonUtil</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getRandomId(): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isDouble(str: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isNumeric(str: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+AccountDetailGUI59960145 -> Customer240035298[label="customer
+[0..1]"];
+AccountDetailGUI59960145 -> CustomerMainGUI59960145[label="actionPerformed() -> CustomerMainGUI()"];
+CreateNewAccountGUI59960145 -> CommonUtil82059409[label="actionPerformed() -> isDouble()"];
+CreateNewAccountGUI59960145 -> Customer240035298[label="customer
+[0..1]"];
+CreateNewAccountGUI59960145 -> User1355086998[label="actionPerformed() -> getId()"];
+CurrencyListGUI59960145 -> ActionPanelEditorRenderer1840277073[label="placeComponents() -> ActionPanelEditorRenderer()"];
+CurrencyListGUI59960145 -> Customer240035298[label="currentCustomer
+[0..1]"];
+CurrencyListGUI59960145 -> CustomerMainGUI59960145[label="actionPerformed() -> CustomerMainGUI()"];
+CurrencyListGUI59960145 -> MyCurrencyListGUI59960145[label="actionPerformed() -> MyCurrencyListGUI()"];
+CustomerMainGUI59960145 -> AccountDetailGUI59960145[label="actionPerformed() -> AccountDetailGUI()"];
+CustomerMainGUI59960145 -> CreateNewAccountGUI59960145[label="actionPerformed() -> CreateNewAccountGUI()"];
+CustomerMainGUI59960145 -> CurrencyListGUI59960145[label="actionPerformed() -> CurrencyListGUI()"];
+CustomerMainGUI59960145 -> Customer240035298[label="currentCustomer
+[0..1]"];
+CustomerMainGUI59960145 -> DepositGUI59960145[label="actionPerformed() -> DepositGUI()"];
+CustomerMainGUI59960145 -> LoanListGUI59960145[label="actionPerformed() -> LoanListGUI()"];
+CustomerMainGUI59960145 -> LoginGUI59960145[label="actionPerformed() -> LoginGUI()"];
+CustomerMainGUI59960145 -> StockListGUI59960145[label="actionPerformed() -> StockListGUI()"];
+CustomerMainGUI59960145 -> TransactionGUI59960145[label="actionPerformed() -> TransactionGUI()"];
+CustomerMainGUI59960145 -> TransactionHistoryGUI59960145[label="actionPerformed() -> TransactionHistoryGUI()"];
+CustomerMainGUI59960145 -> TransferGUI59960145[label="actionPerformed() -> TransferGUI()"];
+CustomerMainGUI59960145 -> User1355086998[label="placeComponents() -> getName()"];
+CustomerMainGUI59960145 -> WithdrawGUI59960145[label="actionPerformed() -> WithdrawGUI()"];
+DepositGUI59960145 -> CheckAccountBalance59960145[label="actionPerformed() -> CheckAccountBalance()"];
+DepositGUI59960145 -> CommonUtil82059409[label="actionPerformed() -> isDouble()"];
+DepositGUI59960145 -> Customer240035298[label="customer
+[0..1]"];
+DepositGUI59960145 -> CustomerMainGUI59960145[label="actionPerformed() -> CustomerMainGUI()"];
+LoanListGUI59960145 -> ActionPanelEditorRenderer1217890960[label="placeComponents() -> ActionPanelEditorRenderer()"];
+LoanListGUI59960145 -> Customer240035298[label="currentCustomer
+[0..1]"];
+LoanListGUI59960145 -> CustomerMainGUI59960145[label="actionPerformed() -> CustomerMainGUI()"];
+LoanListGUI59960145 -> MyLoanListGUI59960145[label="actionPerformed() -> MyLoanListGUI()"];
+LoginGUI59960145 -> CustomerMainGUI59960145[label="actionPerformed() -> CustomerMainGUI()"];
+LoginGUI59960145 -> HomePage70939[label="actionPerformed() -> HomePage()"];
+LoginGUI59960145 -> RegisterGUI59960145[label="actionPerformed() -> RegisterGUI()"];
+StockListGUI59960145 -> ActionPanelEditorRenderer701361308[label="placeComponents() -> ActionPanelEditorRenderer()"];
+StockListGUI59960145 -> Customer240035298[label="currentCustomer
+[0..1]"];
+StockListGUI59960145 -> CustomerMainGUI59960145[label="actionPerformed() -> CustomerMainGUI()"];
+StockListGUI59960145 -> MyStockListGUI59960145[label="actionPerformed() -> MyStockListGUI()"];
+TransactionGUI59960145 -> CheckAccountBalance59960145[label="actionPerformed() -> CheckAccountBalance()"];
+TransactionGUI59960145 -> Customer240035298[label="customer
+[0..1]"];
+TransactionGUI59960145 -> CustomerMainGUI59960145[label="actionPerformed() -> CustomerMainGUI()"];
+TransactionHistoryGUI59960145 -> Customer240035298[label="customer
+[0..1]"];
+TransactionHistoryGUI59960145 -> CustomerMainGUI59960145[label="actionPerformed() -> CustomerMainGUI()"];
+TransferGUI59960145 -> CheckAccountBalance59960145[label="actionPerformed() -> CheckAccountBalance()"];
+TransferGUI59960145 -> CommonUtil82059409[label="actionPerformed() -> isDouble()"];
+TransferGUI59960145 -> Customer240035298[label="customer
+[0..1]"];
+TransferGUI59960145 -> CustomerMainGUI59960145[label="actionPerformed() -> CustomerMainGUI()"];
+WithdrawGUI59960145 -> CheckAccountBalance59960145[label="actionPerformed() -> CheckAccountBalance()"];
+WithdrawGUI59960145 -> CommonUtil82059409[label="actionPerformed() -> isDouble()"];
+WithdrawGUI59960145 -> Customer240035298[label="customer
+[0..1]"];
+WithdrawGUI59960145 -> CustomerMainGUI59960145[label="actionPerformed() -> CustomerMainGUI()"];
+    
+}
+@enduml
